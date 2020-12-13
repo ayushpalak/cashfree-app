@@ -23,7 +23,7 @@ const CustomButton = props => {
   );
 };
 
-Button.propTypes = {
+CustomButton.propTypes = {
   type: PropTypes.string,
   children: PropTypes.node
 };

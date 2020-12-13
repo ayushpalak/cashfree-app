@@ -16,7 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { FETCH_USERS } from "../config/Urls";
 import { UPDATE_TABLE } from "../actions/actionCreater";
-import "./React-table.scss";
+import "./DashboardView.scss";
 
 const TABLE_HEADERS = [
   {
@@ -63,27 +63,24 @@ const TABLE_HEADERS = [
 const OPENBTN = "openBtn";
 const DELETEBTN = "deleteBtn";
 const useStyles = makeStyles(() => ({
-  userField: {
-    name: {
-      marginBottom: "5px"
-    },
-    username: {
-      fontSize: "small",
-      color: "rgb(0, 0, 0, 0.6)"
-    }
+  userFieldName: {
+    marginBottom: "5px"
   },
-  companyField: {
-    container: { display: "flex" },
-    name: { cursor: "pointer", paddingRight: "5px" },
-    icon: { float: "right" }
-  }
+  userFieldusername: {
+    fontSize: "small",
+    color: "rgb(0, 0, 0, 0.6)"
+  },
+  companyFieldContainer: { display: "flex" },
+  name: { cursor: "pointer", paddingRight: "5px" },
+  icon: { float: "right", paddingRight: "5px" },
+  phone: { fontSize: "small" }
 }));
 const UserField = ({ name, username }) => {
   const classes = useStyles();
   return (
     <div>
-      <div className={classes.userField.name}>{name}</div>
-      <div style={classes.userField.username}>@{username}</div>
+      <div className={classes.userFieldName}>{name}</div>
+      <div className={classes.userFieldusername}>@{username}</div>
     </div>
   );
 };
@@ -95,9 +92,9 @@ const CompanyField = ({ name, catchPhrase, bs }) => {
   ${bs}`;
   return (
     <Tooltip title={details} arrow>
-      <div className={classes.companyField.container}>
-        <div className={classes.companyField.name}>{name} </div>
-        <div className={classes.companyField.icon}>
+      <div className={classes.companyFieldContainer}>
+        <div className={classes.name}>{name} </div>
+        <div className={classes.icon}>
           <InfoIcon fontSize="small" />
         </div>
       </div>
@@ -105,7 +102,13 @@ const CompanyField = ({ name, catchPhrase, bs }) => {
   );
 };
 
+const PhoneField = ({ data }) => {
+  const classes = useStyles();
+  return <div className={classes.phone}>{data}</div>;
+};
+
 const AddressField = props => {
+  const classes = useStyles();
   const { street, suite, city, zipcode, geo } = props;
   const details = `${suite},
   ${street},
@@ -115,7 +118,12 @@ const AddressField = props => {
   return (
     <div style={{ cursor: "pointer" }}>
       <Tooltip title={details} arrow>
-        <p>{city}</p>
+        <div className={classes.companyFieldContainer}>
+          <div className={classes.name}>{city}</div>
+          <div className={classes.icon}>
+            <InfoIcon fontSize="small" />
+          </div>
+        </div>
       </Tooltip>
     </div>
   );
@@ -162,7 +170,7 @@ const buildTable = ({ apiData, handleBtn }) => {
           {prop[3]}
         </a>
       ),
-      phone: prop[4],
+      phone: <PhoneField data={prop[4]} />,
       address: <AddressField {...prop[5]} />,
       actions: (
         // use this button to remove the data row
