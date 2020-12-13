@@ -1,14 +1,14 @@
 import * as actions from "../actions/action.js";
 const dashboardState = {
-  dashboard: "init value"
+  dataTable: []
 };
 
 export const dashboardReducer = (state = dashboardState, action) => {
   switch (action.type) {
-    case actions.UPDATE_DASHBOARD:
+    case actions.UPDATE_TABLE:
       return {
         ...state,
-        dashboard: "dashboard updated"
+        dataTable: action.payload
       };
     default:
       return {

@@ -1,1 +1,1 @@
-export const UPDATE_DASHBOARD = "update_dashboard";
+export const UPDATE_TABLE = "fetch_table";
