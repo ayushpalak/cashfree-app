@@ -1,4 +1,6 @@
 ## Deliverables:
+![dashboard](https://i.ibb.co/Y3BHL3q/Screenshot-2020-12-14-at-12-28-56-PM.png)
+![user](https://i.ibb.co/9T8GtwV/Screenshot-2020-12-14-at-12-29-04-PM.png)
 
 ✅  1. Your table should display name, username, email, address, phone, website,
     company, actions. You can decide what can be the best way to show this
