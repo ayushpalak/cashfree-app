@@ -1,7 +1,7 @@
+/* eslint-disable no-undef */
 import React from "react";
-import ReactDOM from "react-dom";
 import DashboardView from "../DashboardView";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { store } from "../../store/store";
 import UserView from "../UserView";
@@ -9,8 +9,9 @@ import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
 import Axios from "axios";
 import { FETCH_USERS } from "../../config/Urls";
+import "@testing-library/jest-dom/extend-expect";
 
-it("renders dashboard table without crashing", async () => {
+test("renders table with users without crashing", async () => {
   const div = document.createElement("div");
   render(
     <Provider store={store}>
@@ -37,7 +38,29 @@ it("renders dashboard table without crashing", async () => {
     });
   });
 });
-it("renders UserView without crashing", () => {
+test("delete a user from table", async () => {
+  const div = document.createElement("div");
+  render(
+    <Provider store={store}>
+      <DashboardView></DashboardView>
+    </Provider>,
+    div
+  );
+
+  const Users = await Axios.get(FETCH_USERS)
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      throw new Error(err);
+    });
+
+  await fireEvent.click(screen.getByTestId("btn-delete-1"));
+
+  //   await expect(screen.getByText(Users[0].name)).toBeNull();
+  await expect(screen.queryByText(Users[0].name)).toBeNull();
+});
+test("renders User data in UserView without crashing", async () => {
   const history = createMemoryHistory();
   history.push("/user/1");
   const div = document.createElement("div");
@@ -49,4 +72,14 @@ it("renders UserView without crashing", () => {
     </Router>,
     div
   );
+  const UserData = await Axios.get(`${FETCH_USERS}/1`)
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      throw new Error(err);
+    });
+  await waitFor(() => {
+    expect(screen.getByText(UserData.email)).toBeInTheDocument();
+  });
 });

@@ -63,9 +63,15 @@ function ContactCard(props) {
       <CardContent>
         <h5> Company Address </h5>
         <Typography variant="body2" color="textSecondary" component="p">
-          <p>{company.name}</p>
-          <p>{company.bs}</p>
-          <p>{company.catchPhrase}</p>
+          <Typography variant="body1" gutterBottom>
+            {company.name}
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            {company.bs}
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            {company.catchPhrase}
+          </Typography>
         </Typography>
       </CardContent>
       <CardActions
@@ -93,17 +99,15 @@ function ContactCard(props) {
           <Typography paragraph>{address.street},</Typography>
           <Typography paragraph>{address.suite},</Typography>
           <Typography paragraph>{address.zipcode}</Typography>
-          <Typography paragraph>
-            {address.geo.lat}
-            {address.geo.lng}
-          </Typography>
+          <Typography paragraph>{address.geo.lat}</Typography>
+          <Typography paragraph>{address.geo.lng}</Typography>
         </CardContent>
       </Collapse>
       <CardActions>
-        <p>
+        <Typography paragraph>
           Website: <a href={website}>{website}</a>
-        </p>
-        <p>phone: {phone}</p>
+        </Typography>
+        <Typography paragraph>phone: {phone}</Typography>
       </CardActions>
     </Card>
   );

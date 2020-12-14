@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable react/prop-types */
 import React, { useEffect } from "react";
 import ReactTable from "react-table";
@@ -176,6 +177,7 @@ const buildTable = ({ apiData, handleBtn }) => {
         // use this button to remove the data row
         <Grid container direction="row" justify="flex-end">
           <Button
+            data-testid={`btn-open-${prop[7]}`}
             onClick={() => {
               handleBtn(prop[7], OPENBTN, apiData);
             }}
@@ -183,6 +185,7 @@ const buildTable = ({ apiData, handleBtn }) => {
             startIcon={<OpenInNewIcon />}
           ></Button>
           <Button
+            data-testid={`btn-delete-${prop[7]}`}
             onClick={() => {
               handleBtn(prop[7], DELETEBTN, apiData);
             }}
@@ -236,7 +239,7 @@ const DashboardView = () => {
     if (dataTable.length === 0) {
       fetchTableData();
     }
-  }, []);
+  }, [dataTable]);
 
   return (
     <Grid container justify="center" alignItems="center">
