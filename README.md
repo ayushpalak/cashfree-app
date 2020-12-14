@@ -1,3 +1,45 @@
+## Deliverables:
+
+✅  1. Your table should display name, username, email, address, phone, website,
+    company, actions. You can decide what can be the best way to show this
+    information in a table row. No data should be unreadable. The last column will
+    have two buttons called Open and Delete
+
+
+✅  2. Table should be sortable by email, name
+
+✅  3. Pagination should be there.
+
+✅  4. Users should be able to select how many rows he wants to see in one page.
+
+
+✅  5. Clicking the open button will open a new view (not a popup/modal) where his
+    details are present(https://jsonplaceholder.typicode.com/users/:userID).
+
+✅  6. Clicking the delete button should remove that row.
+
+✅  7. Code should be readable, modular and clean. Tab size 4 is advised.
+
+✅  8. Basic styling should be done. You can use any UI framework like bootstrap. 
+    - USING MATERIAL UI
+
+✅  9. Coming back and forth betweens views should not fetch data from apis if already
+    fetched.
+
+✅  10. Extra points if you use a data store and state manager.
+    - USING REDUX
+✅  11. Bundle your app using webpack, rollup etc.
+    - USING NPM
+
+✅  12. CSS preprocessor will be a plus.
+    - USING SCSS
+
+✅  13. Having test cases will be a plus.
+    - USING REACT TESTING LIBRARY
+
+✅  14. You can push the project to a Github repository with a Readme.md file to help us
+    run the program in our machine
+
 ## Available Scripts
 
 In the project directory, you can run:
